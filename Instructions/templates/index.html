@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mars Data</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <style>
+    #ri{
+      object-fit: cover;
+      height: max-content;
+    }
+    #md{
+      padding: 10px 20px 0px 20px;
+      text-align:justify;
+      background-color: #00eeff;
+    }
+    #cao{
+      padding: 15px;
+    }
+    figcaption{
+      font-size: 1.05em!important;
+      font-weight: bold;
+      color:black!important;
+    }
+    #xxx{
+      padding: 5px;
+    }
+  </style>
+</head>
+
+<body data-gr-c-s-loaded="true" class="bg-light">
+  <div class="container">
+    <div class="jumbotron text-center">
+      <h1>Mission to Mars</h1>
+      <p></p>
+      <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data!</a></p><!--????-->
+    </div>
+
+    <!-- <section>
+      <h3>Latest Mars News</h3>
+      <h4>{{mars.news_title}}</h4>
+      <p>{{mars.news_p}}</p>
+    </section> -->
+
+    <div class="container shadow p-3 mb-5 bg-white rounded">
+
+      <section>
+        <h3>Latest Mars News</h3>
+        <h5>{{mars.news_title}}</h5>
+        <p>{{mars.news_p}}</p>
+      </section>
+
+      <div class="row">
+        <div class="col-sm-12 col-md-7">
+          <h4>Featured Mars Image</h4>
+          <a target="_blank" href={{mars.featured_image_url}}>
+            <img id="ri" class="figure-img img-fluid rounded float-left" src="{{mars.featured_image_url}}" alt="Mars Image">
+            <!--<figcaption class="figure-caption text-center">Caption inside the anchor "Use mx-auto d-block to make the image in center"</figcaption>-->
+          </a>
+        </div>
+        <div class="col-sm-12 col-md-5">
+          <section id="md" class="border border-secondary">
+            <h5>Current Weather on Mars</h5>
+            <p>
+              {{mars.mars_weather}}
+            </p>
+          </section>
+          <br>
+          <section>
+            <h5>Mars Facts</h5>
+            <table  class="table table-striped table-hover table-sm table-bordered table-responsive-sm">
+              <thead class="table-info">
+                <tr class="text-left">
+                  <th scope="col">parameter</th>
+                  <th scope="col">data</th>
+                </tr>
+              </thead>
+              {{ mars.mars_facts|safe }}
+            </table>
+          </section>
+        </div> <!--md-4-->
+      </div>
+    </div>
+    <br>
+    <div class="shadow-lg p-3 mb-5 bg-white rounded">
+      <h3 class="text-center">Mars Hemispheres</h3>
+      <hr>
+      <div class="row">
+
+        {% for image_url in mars.title_url %}
+        <div id="cao" class="col-sm-12 col-md-6">
+          <div id="xxx" class="border border-dark">
+            <a target="_blank" href="{{image_url.img_url}}">
+              <img class="figure-img img-fluid rounded mx-auto d-block" src="{{image_url.img_url}}" alt="{{image_url.title}}">
+              <figcaption class="figure-caption text-center">{{image_url.title}} </figcaption>
+            </a>
+          </div>
+          
+        </div>
+        {% endfor %}
+
+      </div>
+    </div>
+    
+ 
+    
+
+  </div>
+</body>
+
+</html>
+
+
+
+
